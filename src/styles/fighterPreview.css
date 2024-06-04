@@ -1,7 +1,8 @@
 .fighter-preview___root {
   display: flex;
-  flex-direction: column;
-  flex-basis: 250px;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-basis: 400px;
   height: 30vh;
 }
 
@@ -16,4 +17,16 @@
 
 .fighter-preview___img img {
   height: auto;
+}
+
+.fighter-preview___root-statPanel {
+  box-sizing: border-box;
+  height:inherit;
+  width: 200px;
+  background-color: orange;
+  padding: 10px;
+}
+
+.fighter-preview___statbar {
+  margin-bottom: 15px;
 }
