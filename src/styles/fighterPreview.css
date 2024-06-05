@@ -1,7 +1,8 @@
 .fighter-preview___root {
   display: flex;
-  flex-direction: column;
-  flex-basis: 250px;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-basis: 400px;
   height: 30vh;
 }
 
@@ -16,4 +17,49 @@
 
 .fighter-preview___img img {
   height: auto;
+}
+
+.fighter-preview___root-statPanel {
+  box-sizing: border-box;
+  height:inherit;
+  width: 200px;
+  background: #ffdfa7;
+  padding: 10px;
+  border: 5px solid #ca9650;
+
+  min-height:200px;
+  max-height: 300px
+}
+
+.fighter-preview___statbar {
+  /* margin-bottom: 15px; */
+  font-size: 20px;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-weight: bold;
+}
+
+.fighter-preview___statbar-gauge {
+  /* box-sizing: border-box; */
+  width: 150px;
+  height: 20px;
+  border: red 1px solid;
+}
+
+.fighter-preview____statbar-gauge-meter {
+  box-sizing: border-box;
+  display: inline-block;
+  width: 15px;
+  height: 20px;
+  border: white 2px solid;
+  background: red;
+}
+
+.fighter-preview___statPanel-name {
+  text-align: center;
+  color: black;
+  -webkit-text-fill-color: black;
+  -webkit-text-stroke-width: 1px;
+  font-size: 26px;
+  font-family: 'Arial Black';
+  font-weight: 700;
 }
