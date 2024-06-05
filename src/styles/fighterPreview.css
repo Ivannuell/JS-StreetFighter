@@ -53,3 +53,13 @@
   border: white 2px solid;
   background: red;
 }
+
+.fighter-preview___statPanel-name {
+  text-align: center;
+  color: black;
+  -webkit-text-fill-color: black;
+  -webkit-text-stroke-width: 1px;
+  font-size: 26px;
+  font-family: 'Arial Black';
+  font-weight: 700;
+}

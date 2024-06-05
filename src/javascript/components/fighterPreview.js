@@ -29,14 +29,9 @@ function createStatGauge(value) {
         });
     };
 
-    let much = 0;
-    if (value <= 5) {
-        much = Math.floor((5 / value) * 10);
-    } else if (value >= 40) {
-        much = Math.floor((70 / value) * 10);
-    }
+    const meterCount = value < 40 ? Math.floor((value / 5) * 10) : Math.floor((value / 60) * 10);
 
-    for (let index = 0; index < much; index += 1) {
+    for (let index = 0; index < meterCount; index += 1) {
         statGauge.append(createMeter());
     }
 
@@ -73,17 +68,23 @@ function createStatBar(stat, value) {
 
 function createFighterStatsPanel(fighter, position) {
     // _id, name, health, attack, defence
-    // const {name, health, attack, defense} = fighter
-    const { health, attack, defense } = fighter;
+    const { name, health, attack, defense } = fighter;
     const statsPanel = createElement({
         tagName: 'div',
         className: `fighter-preview___root-statPanel ${position}`
+    });
+
+    const fighterName = createElement({
+        tagName: 'span',
+        className: 'fighter-preview___statPanel-name'
     });
 
     const healthStat = createStatBar('Health', health);
     const attackStat = createStatBar('Attack', attack);
     const defenceStat = createStatBar('Defence', defense);
 
+    fighterName.innerText = name;
+    statsPanel.append(fighterName);
     statsPanel.append(healthStat);
     statsPanel.append(attackStat);
     statsPanel.append(defenceStat);
