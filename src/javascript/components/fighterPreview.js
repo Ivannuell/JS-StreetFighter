@@ -16,6 +16,33 @@ export function createFighterImage(fighter) {
     return imgElement;
 }
 
+function createStatGauge(value) {
+    const statGauge = createElement({
+        tagName: 'div',
+        className: 'fighter-preview___statbar-gauge'
+    });
+
+    const createMeter = () => {
+        return createElement({
+            tagName: 'div',
+            className: 'fighter-preview____statbar-gauge-meter'
+        });
+    };
+
+    let much = 0;
+    if (value <= 5) {
+        much = Math.floor((5 / value) * 10);
+    } else if (value >= 40) {
+        much = Math.floor((70 / value) * 10);
+    }
+
+    for (let index = 0; index < much; index += 1) {
+        statGauge.append(createMeter());
+    }
+
+    return statGauge;
+}
+
 function createStatBar(stat, value) {
     const statElement = createElement({
         tagName: 'div',
@@ -32,11 +59,14 @@ function createStatBar(stat, value) {
         className: 'fighter-preview___statbar-value'
     });
 
+    const statGauge = createStatGauge(value);
+
     statName.innerText = `${stat}: `;
     statVal.innerText = value;
 
     statElement.append(statName);
     statElement.append(statVal);
+    statElement.append(statGauge);
 
     return statElement;
 }
