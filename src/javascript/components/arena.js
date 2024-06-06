@@ -88,18 +88,14 @@ export default function renderArena(selectedFighters) {
 
     // Create a new object for each fighter for the fight only.
 
-    const fightingFighers = {
+    const fightingFighters = {
         firstFighter: { ...selectedFighters[0], position: 'left' },
         secondFighter: { ...selectedFighters[1], position: 'right' }
     };
 
-    Object.values(fightingFighers).forEach(fighter => initializeFighter(fighter));
+    Object.values(fightingFighters).forEach(fighter => initializeFighter(fighter));
 
-    // todo:
-    // - start the fight
-    // - when fight is finished show winner
-
-    fight(...selectedFighters).then(fighter => showWinnerModal(fighter));
+    fight(fightingFighters.firstFighter, fightingFighters.secondFighter).then(fighter => showWinnerModal(fighter));
 }
 
 // todo: add red for taken health points
