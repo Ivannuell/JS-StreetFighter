@@ -47,8 +47,10 @@
   margin: 0 30px;
 }
 
+
+
 .arena___health-indicator {
-  width: 100%;
+  width: var(--health-bar-width);
   height: 25px;
   border: 2px solid;
   border-radius: 5px;
@@ -58,6 +60,11 @@
 
 .arena___health-bar {
   height: 100%;
-  width: 100%;
+  /* width: 100%; */
+  display: flex;
+}
+
+.arena___health-point-indicator {
+  height: 100%;
   background-color: #ebd759;
 }

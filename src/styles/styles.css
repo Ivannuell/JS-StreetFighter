@@ -21,6 +21,7 @@ body {
   width: 100%;
   overflow: hidden;
   user-select: none;
+  --health-bar-width: 650px;
 }
 
 img {

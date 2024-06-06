@@ -109,7 +109,10 @@ export function createFighterPreview(fighter, position) {
         return createFighterStatsPanel(currFighter, currPosition);
     }
 
-    handlePreviewStatPanel(fighter, positionClassName).then(panel => fighterElement.append(panel));
+    handlePreviewStatPanel(fighter, positionClassName)
+        .then(panel => fighterElement.append(panel))
+        .catch(err => console.warn(err));
+
     handlePreviewImage(fighter).then(image => fighterElement.append(image));
 
     return fighterElement;
