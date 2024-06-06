@@ -55,6 +55,22 @@ export default async function fight(firstFighter, secondFighter) {
                 return;
             }
 
+            if (controls.PlayerOneCriticalHitCombination.every(key => keysPressed[key])) {
+                secondFighterHealth -= getDamage(firstFighter, secondFighter) * 2;
+                reduceHealth(secondHealthPoints, getDamage(firstFighter, secondFighter) * 2);
+                if (checkForWinner(firstFighter, secondFighter, [firstFighterHealth, secondFighterHealth]) !== null) {
+                    resolve(checkForWinner(firstFighter, secondFighter, [firstFighterHealth, secondFighterHealth]));
+                }
+            }
+
+            if (controls.PlayerTwoCriticalHitCombination.every(key => keysPressed[key])) {
+                firstFighterHealth -= getDamage(secondFighter, firstFighter) * 2;
+                reduceHealth(firstHealthPoints, getDamage(secondFighter, firstFighter) * 2);
+                if (checkForWinner(firstFighter, secondFighter, [firstFighterHealth, secondFighterHealth]) !== null) {
+                    resolve(checkForWinner(firstFighter, secondFighter, [firstFighterHealth, secondFighterHealth]));
+                }
+            }
+
             if (event.code === controls.PlayerOneAttack) {
                 secondFighterHealth -= getDamage(firstFighter, secondFighter);
                 // console.log(getDamage(firstFighter, secondFighter) + ' damage' + ' to ' + secondFighter.name + ' health: '  + secondFighterHealth);
