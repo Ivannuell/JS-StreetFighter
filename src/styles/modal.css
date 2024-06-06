@@ -38,3 +38,22 @@
   line-height: 1;
   cursor: pointer;
 }
+
+.modal-winner {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-winner img {
+  width: inherit;
+  height: 500px;
+  margin-bottom: 1rem;
+}
+
+.modal-winner-name {
+  font-size: 25px;
+  font-weight: 700;
+}
