@@ -3,7 +3,8 @@
 import controls from '../../constants/controls';
 
 export function getHitPower(fighter) {
-    const hitPower = fighter.attack;
+    const criticalHitChance = Math.random() + 1;
+    const hitPower = fighter.attack * criticalHitChance;
     return hitPower;
 }
 
@@ -30,8 +31,10 @@ function checkForWinner(firstFighter, secondFighter, [firstHealthPoints, secondH
     }
 
     if (secondHealthPoints <= 0) {
+        // document.removeEventListener('keydown', handleKeydown);
         return firstFighter;
     }
+
     return null;
 }
 
@@ -46,7 +49,7 @@ export default async function fight(firstFighter, secondFighter) {
         const firstFighterBlocking = Math.ceil(firstFighter.defense + firstFighter.defense * 0.7);
 
         const keysPressed = {};
-        document.addEventListener('keydown', event => {
+        function handleKeydown(event) {
             keysPressed[event.code] = true;
             if (keysPressed[controls.PlayerOneBlock] && event.code === controls.PlayerOneAttack) {
                 return;
@@ -98,7 +101,9 @@ export default async function fight(firstFighter, secondFighter) {
                 secondFighter.defense = secondFighterBlocking;
                 // console.log('Player Two is Blocking defense: ' + secondFighter.defense);
             }
-        });
+        }
+
+        document.addEventListener('keydown', handleKeydown, false);
 
         document.addEventListener('keyup', event => {
             if (event.code === controls.PlayerOneBlock) {
