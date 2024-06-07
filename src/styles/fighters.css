@@ -10,6 +10,7 @@
 }
 
 .fighters___list {
+  box-sizing: border-box;
   margin: 40px;
   display: flex;
   align-items: center;

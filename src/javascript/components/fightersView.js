@@ -18,7 +18,11 @@ function createImage(fighter) {
 }
 
 function createFighter(fighter, selectFighter) {
-    const fighterElement = createElement({ tagName: 'div', className: 'fighters___fighter' });
+    const fighterElement = createElement({
+        tagName: 'div',
+        className: 'fighters___fighter'
+    });
+
     const imageElement = createImage(fighter);
     const onClick = event => selectFighter(event, fighter._id);
 
