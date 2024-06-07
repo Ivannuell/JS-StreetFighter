@@ -61,6 +61,24 @@ function createArena(selectedFighters) {
     return arena;
 }
 
+function createHealthPointIndicator(width) {
+    const healthPointIndicator = createElement({
+        tagName: 'div',
+        className: 'arena___health-point-indicator',
+        attributes: { style: `width: ${width}px` }
+    });
+
+    return healthPointIndicator;
+}
+
+function initializeFighter(fighter) {
+    const { health } = fighter;
+    const healthIndicator = document.getElementById(`${fighter.position}-fighter-indicator`);
+
+    const width = healthIndicator.clientWidth / health;
+    for (let i = 0; i < health; i += 1) healthIndicator.append(createHealthPointIndicator(width));
+}
+
 export default function renderArena(selectedFighters) {
     const root = document.getElementById('root');
     const arena = createArena(selectedFighters);
@@ -68,9 +86,16 @@ export default function renderArena(selectedFighters) {
     root.innerHTML = '';
     root.append(arena);
 
-    // todo:
-    // - start the fight
-    // - when fight is finished show winner
+    // Create a new object for each fighter for the fight only.
 
-    fight(...selectedFighters).then(fighter => showWinnerModal(fighter));
+    const fightingFighters = {
+        firstFighter: { ...selectedFighters[0], position: 'left' },
+        secondFighter: { ...selectedFighters[1], position: 'right' }
+    };
+
+    Object.values(fightingFighters).forEach(fighter => initializeFighter(fighter));
+
+    fight(fightingFighters.firstFighter, fightingFighters.secondFighter).then(fighter => showWinnerModal(fighter));
 }
+
+// todo: add red for taken health points
